@@ -1,0 +1,33 @@
+{
+  "name": "ttctl-website",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Marketing site and docs for TTCtl (Starlight)",
+  "type": "module",
+  "license": "AGPL-3.0-only",
+  "homepage": "https://ttctl.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ttctl/ttctl.github.io.git"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.38.4",
+    "astro": "^6.2.1",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "typescript": "^5.9.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=24"
+  }
+}

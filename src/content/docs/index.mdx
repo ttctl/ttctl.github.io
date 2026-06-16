@@ -1,0 +1,96 @@
+---
+title: TTCtl
+description: Unofficial CLI and MCP server for the Toptal Talent platform — a personal-productivity tool.
+---
+
+import { Aside, Card, CardGrid, Steps, Tabs, TabItem, LinkButton } from "@astrojs/starlight/components";
+
+# TTCtl
+
+**Personal-productivity CLI for your own Toptal Talent profile.**
+
+<Aside type="caution" title="Unofficial. Personal use only.">
+    TTCtl is an **unofficial** tool. It is **not affiliated with, endorsed by, or supported by Toptal LLC**.
+    It is built for fair use against the maintainer's own profile and shared in case it's useful to other
+    Toptal talents for theirs.
+
+    **Do not use this tool for spam, mass automation, recruiter scraping, engagement-signal manipulation,
+    application bombing, or any behavior that violates Toptal's Terms of Service or burdens the platform.**
+
+    [Read the full disclaimer →](/disclaimer/)
+</Aside>
+
+## Quick install
+
+```sh
+npm install -g ttctl
+```
+
+Or run directly with `npx`:
+
+```sh
+npx ttctl --help
+```
+
+The package is published to [npm as `ttctl`](https://www.npmjs.com/package/ttctl).
+
+## Quick start
+
+<Steps>
+
+1. **Install the CLI**
+
+    ```sh
+    npm install -g ttctl
+    ```
+
+2. **Create `.ttctl.yaml`** in your home directory (or in the working directory where you'll run TTCtl). The recommended form references a 1Password item that holds your Toptal credentials:
+
+    ```yaml
+    # ~/.ttctl.yaml
+    auth: "op://Personal/ttctl"
+    ```
+
+    The 1Password item must have `username` and `password` fields populated. TTCtl uses the [1Password CLI](https://developer.1password.com/docs/cli/) (`op`) to resolve the reference, with biometric prompt where the Desktop App integration is enabled.
+
+3. **Verify the install**
+
+    ```sh
+    ttctl --help
+    ```
+
+4. **Read the docs**
+
+    - [Installation →](/installation/) — npm and MCP-client integration
+    - [Configuration →](/configuration/) — `.ttctl.yaml` format and discovery
+    - [Commands →](/commands/) — CLI reference
+    - [MCP Tools →](/mcp-tools/) — MCP server tools
+
+</Steps>
+
+## How it works
+
+TTCtl drives Toptal Talent's own web and mobile interfaces using your session, exclusively for personal use against your own profile. The GraphQL surfaces it consumes (mobile gateway, talent profile portal, scheduler) are the same ones the official Toptal Talent web and mobile apps use; TTCtl synthesizes a local schema from observed traffic and persisted-query introspection.
+
+For the surfaces that sit behind Cloudflare bot-management, TTCtl uses TLS-fingerprint impersonation ([`node-wreq`](https://github.com/alexey-pelykh/node-wreq)) so that JA3/JA4 and ECH validation pass like a real browser. Cookies are stored locally in Mozilla format with `0600` permissions; `cf_clearance` is JA3+IP bound and prompts for refresh from a live browser session when invalidated.
+
+For source code, issues, and contribution guidelines, see the [main repository](https://github.com/alexey-pelykh/ttctl).
+
+<CardGrid>
+    <Card title="Open source" icon="seti:github">
+        AGPL-3.0-only. Code at [github.com/alexey-pelykh/ttctl](https://github.com/alexey-pelykh/ttctl).
+    </Card>
+    <Card title="Single config" icon="setting">
+        One profile, one talent. No multi-account juggling — TTCtl operates against **your** profile only.
+    </Card>
+    <Card title="MCP-ready" icon="puzzle">
+        Plugs into Claude Desktop, Claude Code, Cursor, and any [Model Context Protocol](https://modelcontextprotocol.io) client.
+    </Card>
+    <Card title="Fair-use first" icon="approve-check">
+        No mass automation, no scraping, no engagement manipulation. Personal-use only — read the [disclaimer](/disclaimer/).
+    </Card>
+</CardGrid>
+
+---
+
+**Unofficial.** Not affiliated with Toptal LLC. "Toptal" is a trademark of Toptal LLC; use of the name on this site is nominative fair use only. [Full disclaimer →](/disclaimer/) · [License: AGPL-3.0-only](/license/) · [Repository](https://github.com/alexey-pelykh/ttctl)

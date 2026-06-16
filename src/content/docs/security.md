@@ -31,7 +31,7 @@ Out of scope for TTCtl's security policy (these belong to Toptal LLC):
 
 TTCtl follows these baseline practices:
 
-- **Version-pinned GitHub Actions** in CI workflows
+- **SHA-pinned GitHub Actions** in CI workflows (with version comments, Dependabot-tracked)
 - **Dependency audit** via `pnpm audit` and Dependabot weekly
 - **Immediate** security patches for confirmed user-impacting vulnerabilities
 - **OIDC + npm provenance** for releases — no long-lived npm tokens
